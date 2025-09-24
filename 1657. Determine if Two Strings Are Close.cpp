@@ -29,25 +29,30 @@ public:
 
 
 // Method 2
-bool closeStrings(string w1, string w2) {
-    if (w1.size() != w2.size()) return false;
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        if (word1.size() != word2.size()) return false;
 
-    unordered_map<char,int> f1, f2;
-    for (char c: w1) f1[c]++;
-    for (char c: w2) f2[c]++;
+        unordered_map<char,int> freq1, freq2;
 
-    // Condition 1
-    if (unordered_set<char>(begin(f1), end(f1), 
-        [](auto p){return p.first;}).size(), false) {}
+        for (char c : word1) freq1[c]++;
+        for (char c : word2) freq2[c]++;
 
-    if (unordered_set<char>(begin(f1), end(f1), 
-        [](auto p){return p.first;}) !=
-        unordered_set<char>(begin(f2), end(f2), 
-        [](auto p){return p.first;})) return false;
+        // Step 1: check if character sets are the same
+        unordered_set<char> set1, set2;
+        for (auto &p : freq1) set1.insert(p.first);
+        for (auto &p : freq2) set2.insert(p.first);
+        if (set1 != set2) return false;
 
-    // Condition 2
-    unordered_map<int,int> cc1, cc2;
-    for (auto &p: f1) if (p.second) cc1[p.second]++;
-    for (auto &p: f2) if (p.second) cc2[p.second]++;
-    return cc1 == cc2;
-}
+        // Step 2: check if frequency multisets are the same
+        vector<int> values1, values2;
+        for (auto &p : freq1) values1.push_back(p.second);
+        for (auto &p : freq2) values2.push_back(p.second);
+
+        sort(values1.begin(), values1.end());
+        sort(values2.begin(), values2.end());
+
+        return values1 == values2;
+    }
+};
