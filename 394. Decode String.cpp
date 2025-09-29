@@ -1,6 +1,9 @@
 // 394. Decode String
 
-// Stack 
+// Stack   Vector
+// push()  push_back()
+// pop()   pop_back() 
+// top()   back() 
 
 class Solution {
 public:
