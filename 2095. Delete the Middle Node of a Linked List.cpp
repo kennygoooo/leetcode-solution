@@ -29,6 +29,20 @@ public:
         ListNode* fast = head;
         ListNode* prev = nullptr;
         
+
+        // When the list has odd length (7 nodes)
+        // 1 → 3 → 4 → 7 → 1 → 2 → 6 → NULL
+        // fast : 1 -> 4 -> 1 -> 6
+        // fast->next: 3 -> 7 -> 2 -> NULL
+
+
+                
+
+        // When the list has eve length (6 nodes)
+        // 1 → 3 → 4 → 7 → 1 → 2 → NULL
+        // fast : 1 -> 4 -> 1 -> NULL
+        // fast->next: 3 -> 7 -> 2 -> N/A
+
         while (fast && fast->next) {
             prev = slow; // Store the node before slow
             slow = slow->next; // Move slow one step
