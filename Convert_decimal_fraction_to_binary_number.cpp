@@ -20,11 +20,11 @@ string decimalToBinary(double num, int k_prec)
 
     // Conversion of integral part to
     // binary equivalent
-    while (Integral)
+    while (Integral) // until Integral(quotient) equal to 0
     {
         int rem = Integral % 2;
 
-        // Append 0 in binary
+        // Append 0 in binary. Int -> string
         binary.push_back(rem +'0');
 
         Integral /= 2;
@@ -46,13 +46,8 @@ string decimalToBinary(double num, int k_prec)
         fractional *= 2;
         int fract_bit = fractional;
 
-        if (fract_bit == 1)
-        {
-            fractional -= fract_bit;
-            binary.push_back(1 + '0');
-        }
-        else
-            binary.push_back(0 + '0');
+        binary.push_back(fract_bit + '0');
+        fractional -= fract_bit;
     }
 
     return binary;
